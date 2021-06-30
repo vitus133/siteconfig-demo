@@ -1,7 +1,7 @@
 apiVersion: batch/v1
 kind: Job
 metadata:
-  name: siteconfig
+  name: siteconfig-pre
   generateName: pre-sync-
   annotations:
     argocd.argoproj.io/hook: PreSync
