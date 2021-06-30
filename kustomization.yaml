@@ -1,0 +1,6 @@
+resources:
+- post-sync.yaml
+- pre-sync.yaml
+- site1-sno-du.yaml
+- site2-sno-du.yaml
+
