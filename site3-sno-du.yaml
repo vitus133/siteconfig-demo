@@ -20,7 +20,7 @@ spec:
       common: true
       sites : "site-sno-du-3"
     clusterNetwork:
-      - cidr: 10.16.0.0/16
+      - cidr: 10.11.0.0/16
         hostPrefix: 23
     machineNetwork:
       - cidr: 10.16.231.0/24
