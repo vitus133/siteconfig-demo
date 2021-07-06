@@ -15,6 +15,6 @@ spec:
           command: ["/bin/bash", "post-sync-entrypoint.sh"]
       restartPolicy: Never
   backoffLimit: 0
-  ttlSecondsAfterFinished: 60
+  # ttlSecondsAfterFinished: 60
 
 
