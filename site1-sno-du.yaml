@@ -30,7 +30,7 @@ spec:
       ntpServer: "pool.ntp.org"
     additionalNTPSources:
       - NTP.server1
-      - 10.16.231.22
+      - 10.16.231.21
     ignitionConfigOverride: "igen"
     nodes:
       - hostName: "node1"
