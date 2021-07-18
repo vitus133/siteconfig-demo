@@ -1,0 +1,78 @@
+apiVersion: ran.openshift.io/v1
+kind: SiteConfig
+metadata:
+  name: "site-plan-cnfde10"
+  namespace: "clusters-sub"
+spec:
+  baseDomain: "ptp.lab.eng.bos.redhat.com"
+  pullSecretRef:
+    name: "test-pull-secret"
+  clusterImageSetNameRef: "openshift-v4.8.0"
+  sshPublicKey: "ecdsa-sha2-nistp256 AAAAE2VjZHNhLXNoYTItbmlzdHAyNTYAAAAIbmlzdHAyNTYAAABBBFjkDZdkSOhY2U2Dx0MRLLQDMXp8axGC2qbS37FnMqSD86R1Om4q+EC9c8D19LLfn7yNFvJOpY+fFefuLSHxfm4= imiller@redhat.com"
+  sshPrivateKeySecretRef:
+    name: "sshPrvKey testH"
+  clusters:
+  - clusterName: "cnfde10"
+    clusterType: sno
+    clusterProfile: du
+    clusterLabels:
+      group-du-sno: ""
+      common: true
+      sites : "site-cnfde10"
+    clusterNetwork:
+      - cidr: 10.128.0.0/14
+        hostPrefix: 23
+    machineNetwork:
+      - cidr: 10.16.231.0/24
+    serviceNetwork:
+      - 172.30.0.0/16
+    manifestsConfig:
+      ntpServer: "pool.ntp.org"
+    additionalNTPSources:
+      - 0.pool.ntp.org
+    # This config sets up registries for ocp-release and RHACM in quay.io:443
+    ignitionConfigOverride: '{"ignition": {"version": "3.1.0"}, "storage": {"files": [{"path": "/etc/containers/registries.conf", "overwrite": true, "contents": {"source": "data:text/plain;base64,W1tyZWdpc3RyeV1dCiAgbG9jYXRpb24gPSAicXVheS5pby9vcGVuc2hpZnQtcmVsZWFzZS1kZXYvb2NwLXJlbGVhc2UiCiAgaW5zZWN1cmUgPSBmYWxzZQogIG1pcnJvci1ieS1kaWdlc3Qtb25seSA9IHRydWUKW1tyZWdpc3RyeV1dCiAgcHJlZml4ID0gIiIKICBsb2NhdGlvbiA9ICJyZWdpc3RyeS5yZWRoYXQuaW8vcmhhY20yIgogIG1pcnJvci1ieS1kaWdlc3Qtb25seSA9IGZhbHNlCiAgW1tyZWdpc3RyeS5taXJyb3JdXQogICBsb2NhdGlvbiA9ICJxdWF5LmlvOjQ0My9hY20tZCIK"}}]}}'
+    nodes:
+      - hostName: "cnfde10"
+        #bmcAddress: "redfish-virtualmedia+https://10.16.121.77/redfish/v1/Systems/System.Embedded.1"
+        bmcAddress: "idrac-virtualmedia+https://10.16.231.97/redfish/v1/Systems/System.Embedded.1"
+        bmcCredentialsName:
+          name: "cnfde10-bmh-secret"
+        bootMACAddress: "04:3F:72:A4:F5:8C"
+        bootMode: "UEFI"
+        rootDeviceHints:
+          deviceName: "/dev/sda"
+          vendor: "sata"
+          model: "baseModel"
+        userData:
+          bootKey: value12
+        nodeNetwork:
+          interfaces:
+            - name: eno1
+              macAddress: "04:3F:72:A4:F5:8C"
+          config:
+            interfaces:
+              - name: eno1
+                macAddress: "04:3F:72:A4:F5:8C"
+                type: ethernet
+                ipv4:
+                  enabled: true
+                  dhcp: false
+                  address:
+                    - ip: 10.16.231.55
+                      prefix-length: 24
+                    - ip: 10.16.231.49
+                      prefix-length: 24
+                    - ip: 10.16.231.50
+                      prefix-length: 24
+            dns-resolver:
+              config:
+                server:
+                  - "10.19.42.41"
+            routes:
+              config:
+                - destination: 0.0.0.0/0
+                  next-hop-address: "10.16.231.254"
+                  next-hop-interface: eno1
+                  table-id: 254
+
