@@ -2,7 +2,7 @@ apiVersion: batch/v1
 kind: Job
 metadata:
   name: siteconfig-post
-  namespace: "clusters-sub"
+  namespace: ran-sites
   generateName: post-sync-
   annotations:
     argocd.argoproj.io/hook: PostSync

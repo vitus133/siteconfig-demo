@@ -2,7 +2,7 @@ apiVersion: ran.openshift.io/v1
 kind: SiteConfig
 metadata:
   name: "site-plan-cnfde10"
-  namespace: "clusters-sub"
+  namespace: ran-sites
 spec:
   baseDomain: "ptp.lab.eng.bos.redhat.com"
   pullSecretRef:
