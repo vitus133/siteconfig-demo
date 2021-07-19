@@ -6,7 +6,7 @@ metadata:
 spec:
   baseDomain: "ptp.lab.eng.bos.redhat.com"
   pullSecretRef:
-    name: "test-pull-secret"
+    name: "pull-secret"
   clusterImageSetNameRef: "openshift-v4.8.0"
   sshPublicKey: "ecdsa-sha2-nistp256 AAAAE2VjZHNhLXNoYTItbmlzdHAyNTYAAAAIbmlzdHAyNTYAAABBBFjkDZdkSOhY2U2Dx0MRLLQDMXp8axGC2qbS37FnMqSD86R1Om4q+EC9c8D19LLfn7yNFvJOpY+fFefuLSHxfm4= imiller000@redhat.com"
   clusters:
