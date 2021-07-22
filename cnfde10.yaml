@@ -8,7 +8,7 @@ spec:
   pullSecretRef:
     name: "pull-secret"
   clusterImageSetNameRef: "openshift-v4.8.0"
-  sshPublicKey: "ecdsa-sha2-nistp256 AAAAE2VjZHNhLXNoYTItbmlzdHAyNTYAAAAIbmlzdHAyNTYAAABBBFjkDZdkSOhY2U2Dx0MRLLQDMXp8axGC2qbS37FnMqSD86R1Om4q+EC9c8D19LLfn7yNFvJOpY+fFefuLSHxfm4= imiller@redhat.com"
+  sshPublicKey: "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQDqcQiMhQ+8Etk/piWUs2MBwFFx+qR5qVlxRviYgq1iJ6YMmtp+10BhYc1jKy+AoGHCRrnVT90qJk94p8XwDj8dbPONsSrNVnnIJh37SGwIdHrk1Fh/88KKTNy4mJIYEZCFVpq1GbG0msgVcJqRo0+zuduu0t7sLR+pmEPLDWStSNDM7ZQ0s5h+zd0937DsQCWiJjPC3dslpB3aBWhgi+5/A3JowVFt6SUsbyNkattlNeYdejS38So+y/f++08DwGfQovBTk4TpTMvey/wpzhjk/SuHvIhOTx/p5GYx7upK2FW6bu+1o2YOvAch01mTmnZ5T+ACOkR2Fk0BtxbhYx/5OY5UI3X0tvBgI/VrN3RvOeJObQT4QcP572v1vQJ23Miw6ghXtJADRpdACuIgp9bfRlzKxKx/ZOkifFBlldTNJiiYRWfYNQX0kLZ59zjfzkycun1lz2CQaAKtoGA/qtHCUTovI/xq+PxJt4qsVUf8gDO5HdLHtsZ5kEceZohZZt0= vgrinber@workstation"
   clusters:
   - clusterName: "cnfde10"
     clusterType: sno
