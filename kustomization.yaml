@@ -1,4 +1,4 @@
 resources:
 - post-sync.yaml
 - pre-sync.yaml
-- cnfde10.yaml  
+- test-sno.yaml  
