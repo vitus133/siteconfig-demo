@@ -39,7 +39,7 @@ spec:
         bootMACAddress: "04:3F:72:A4:F5:8C"
         bootMode: "UEFI"
         rootDeviceHints:
-          deviceName: "/dev/sdb"
+          deviceName: "/dev/sdb4"
           #vendor: "sata"
           #model: "baseModel"
         #userData:
