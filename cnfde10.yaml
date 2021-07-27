@@ -27,7 +27,7 @@ spec:
     manifestsConfig:
       ntpServer: "pool.ntp.org"
     additionalNTPSources:
-      - 1.pool.ntp.org
+      - 0.pool.ntp.org
     # This config sets up registries for ocp-release and RHACM in quay.io:443
     ignitionConfigOverride: '{"ignition": {"version": "3.1.0"}, "storage": {"files": [{"path": "/etc/containers/registries.conf", "overwrite": true, "contents": {"source": "data:text/plain;base64,W1tyZWdpc3RyeV1dCiAgbG9jYXRpb24gPSAicXVheS5pby9vcGVuc2hpZnQtcmVsZWFzZS1kZXYvb2NwLXJlbGVhc2UiCiAgaW5zZWN1cmUgPSBmYWxzZQogIG1pcnJvci1ieS1kaWdlc3Qtb25seSA9IHRydWUKW1tyZWdpc3RyeV1dCiAgcHJlZml4ID0gIiIKICBsb2NhdGlvbiA9ICJyZWdpc3RyeS5yZWRoYXQuaW8vcmhhY20yIgogIG1pcnJvci1ieS1kaWdlc3Qtb25seSA9IGZhbHNlCiAgW1tyZWdpc3RyeS5taXJyb3JdXQogICBsb2NhdGlvbiA9ICJxdWF5LmlvOjQ0My9hY20tZCIK"}}]}}'
     nodes:
