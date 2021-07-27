@@ -7,7 +7,7 @@ spec:
   baseDomain: "ptp.lab.eng.bos.redhat.com"
   pullSecretRef:
     name: "pull-secret"
-  clusterImageSetNameRef: "openshift-v4.8.0"
+  clusterImageSetNameRef: "openshift-v4.8.2"
   sshPublicKey: "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQChfK4IkymuVmZr2QMDTbKxtbXngJfFXj4YSEWgWbv7sPIeVV2eo5wDwEU7zPQqjTBsVNI7AtUN2SW/KX4QEjRZyQEG7Wf+fpVuVKsxdHFse5kXkR5rBpKeJCLBgiP9FoHVh3qYqMgY1+zkx7EcnIz6naKvOO2TVsOHK/G2vai+lenOE/n9TBT0LXa1yQ1OD6v4yNCOlZK22m5/YnSiDADRoZvUrYCThFVFTVLFmYARmZ+kP8PUKawBQxLI8vfOphx7TWuMUXqnlzB90okDOP0AEiKv3zN95OBUeRdnG0eVDM2eseDUpdUvJxnvBf5D0qoHfd/pzKOU/auLiT3E207SZaYgkqJMw81j+w2RUwQEaoVW2wfvNZ0X8NlSpiQVsoLAZYmnlty/XKmNvZ8EHO4txTQEqnPEzmFluM9TaP9aDNm02xLYAmgXQSC1Qg6eTnHNsDRM0/JMwx3QPyI4vRFoqNgwJkjkQcOy93/PfteWQ5TOKQ4r7J+b+/DVKhh4m9k= kni@cnfde1.ptp.lab.eng.bos.redhat.com"
   clusters:
   - clusterName: "cnfde10"
