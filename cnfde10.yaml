@@ -39,11 +39,11 @@ spec:
         bootMACAddress: "04:3F:72:A4:F5:8C"
         bootMode: "UEFI"
         rootDeviceHints:
-          deviceName: "/dev/sda"
-          vendor: "sata"
-          model: "baseModel"
-        userData:
-          bootKey: value12
+          deviceName: "/dev/sdb"
+          #vendor: "sata"
+          #model: "baseModel"
+        #userData:
+        #  bootKey: value12
         nodeNetwork:
           interfaces:
             - name: eno1
