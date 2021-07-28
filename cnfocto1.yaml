@@ -36,7 +36,7 @@ spec:
         bmcAddress: "idrac-virtualmedia+https://10.16.231.77/redfish/v1/Systems/System.Embedded.1"
         bmcCredentialsName:
           name: "cnfocto1-bmh-secret"
-        bootMACAddress: "EF:43:4B:F6:12:E0"
+        bootMACAddress: "E4:43:4B:F6:12:E0"
         bootMode: "UEFI"
         rootDeviceHints:
           deviceName: "/dev/sda"
@@ -47,11 +47,11 @@ spec:
         nodeNetwork:
           interfaces:
             - name: eno1
-              macAddress: "EF:43:4B:F6:12:E0"
+              macAddress: "E4:43:4B:F6:12:E0"
           config:
             interfaces:
               - name: eno1
-                macAddress: "EF:43:4B:F6:12:E0"
+                macAddress: "E4:43:4B:F6:12:E0"
                 type: ethernet
                 ipv4:
                   enabled: true
