@@ -2,5 +2,5 @@ resources:
 - namespace.yaml
 - post-sync.yaml
 - pre-sync.yaml
-- ran-vcl02.yaml
-- group-test1.yaml
+# - ran-vcl02.yaml
+# - group-test1.yaml
