@@ -19,6 +19,7 @@ metadata:
 spec:
   bindingRules:
     siteName: "ran-vcl02"
+    test: test
   mcp: "master"
   sourceFiles:
     - fileName: SriovNetwork.yaml
