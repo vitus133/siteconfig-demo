@@ -100,6 +100,7 @@ spec:
       metadata:
         labels:
           machineconfiguration.openshift.io/role: master
+          test: test
     - fileName: MachineConfigDisableChronyd.yaml
       policyName: "mc-chronyd"
     - fileName: PtpConfigSlave.yaml
