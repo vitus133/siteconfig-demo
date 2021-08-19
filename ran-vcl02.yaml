@@ -85,7 +85,7 @@ spec:
               summary=Configuration changes profile inherited from performance created tuned
               include=openshift-node-performance-profile
               [bootloader]
-              cmdline_crash=nohz_full=2-39,42-79
+              cmdline_crash=nohz_full=2-39,42-78
               [sysctl]
               kernel.timer_migration=1
               [service]
