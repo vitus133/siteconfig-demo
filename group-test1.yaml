@@ -1,0 +1,118 @@
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: group-test1-policies
+  labels:
+    name: group-test1-policies
+---
+apiVersion: ran.openshift.io/v1
+kind: PolicyGenTemplate
+metadata:
+  name: "group-test1-policies"
+  namespace: "group-test1-policies"
+#  labels:
+#    common: "false"
+#    groupName: "group-test1"
+#    siteName: ""
+#    # SNO must use the master MCP
+#    mcp: "master"
+spec:
+  bindingRules:
+    group-test1: ""
+  mcp: "master"
+  sourceFiles:
+    # Create operators policies that will be installed in all clusters
+    - fileName: SriovSubscription.yaml
+      policyName: "sriov-sub"
+    - fileName: SriovSubscriptionNS.yaml
+      policyName: "sriov-sub-ns"
+    - fileName: SriovSubscriptionOperGroup.yaml
+      policyName: "sriov-sub-oper"
+    - fileName: PtpSubscription.yaml
+      policyName: "ptp-sub"
+    - fileName: PtpSubscriptionNS.yaml
+      policyName: "ptp-sub-ns"
+    - fileName: PtpSubscriptionOperGroup.yaml
+      policyName: "ptp-sub-oper"
+    - fileName: PaoSubscription.yaml
+      policyName: "pao-sub"
+      spec:
+      # Changing the channel value will upgrade/downgrade the operator installed version.
+        channel: "4.8"
+    - fileName: PaoSubscriptionNS.yaml
+      policyName: "pao-sub-ns"
+    - fileName: PaoSubscriptionOperGroup.yaml
+      policyName: "pao-sub-oper"
+    - fileName: PaoSubscriptionCatalogSource.yaml
+      policyName: "pao-sub-ctlg"
+    - fileName: ClusterLogOperGroup.yaml
+      policyName: "log-oper-group"
+    - fileName: ClusterLogSubscription.yaml
+      policyName: "log-sub"
+    - fileName: StorageSubscription.yaml
+      policyName: "storage-sub"
+  #  - fileName: MachineConfigContainerMountNS.yaml
+  #    policyName: "worker-mc-mount-ns"
+  #    metadata:
+  #      name: "02-worker-container-mount-namespace"
+  #      labels:
+  #        machineconfiguration.openshift.io/role: worker
+  #  - fileName: MachineConfigContainerMountNS.yaml
+  #    policyName: "master-mc-mount-ns"
+  #    metadata:
+  #      name: "02-master-container-mount-namespace"
+  #      labels:
+  #        machineconfiguration.openshift.io/role: master
+    - fileName: ConsoleOperatorDisable.yaml
+      policyName: "console"
+    # Set ClusterLogForwarder & ClusterLogging as example might be better to create another policyTemp-Group
+    - fileName: ClusterLogForwarder.yaml
+      policyName: "log-forwarder"
+      spec:
+        outputs:
+          - type: "kafka"
+            name: kafka-open
+            # below url is an example
+            url: tcp://10.46.55.190:9092/testX
+        pipelines:
+          - name: audit-logs
+            inputRefs:
+             - audit
+            outputRefs:
+             - kafka-open
+          - name: infrastructure-logs
+            inputRefs:
+             - infrastructure
+            outputRefs:
+             - kafka-open
+    - fileName: ClusterLogging.yaml
+      policyName: "log"
+      spec:
+        curation:
+          curator:
+            schedule: "30 3 * * *"
+        collection:
+          logs:
+            type: "fluentd"
+            fluentd: {}
+    - fileName: MachineConfigSctp.yaml
+      policyName: "mc-sctp"
+      metadata:
+        labels:
+          machineconfiguration.openshift.io/role: master
+    - fileName: MachineConfigDisableChronyd.yaml
+      policyName: "mc-chronyd"
+    - fileName: PtpConfigSlave.yaml
+      policyName: "ptp-config"
+      metadata:
+        name: "du-ptp-slave"
+      spec:
+        profile:
+        - name: "slave"
+          interface: "ens5f0"
+          ptp4lOpts: "-2 -s --summary_interval -4"
+          phc2sysOpts: "-a -r -n 24"
+    - fileName: SriovOperatorConfig.yaml
+      policyName: "sriov-opercfg"
+      spec:
+        disableDrain: true

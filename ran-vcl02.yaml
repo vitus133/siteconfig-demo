@@ -1,0 +1,91 @@
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: site-ran-vcl02-policies
+  labels:
+    name: site-ran-vcl02-policies
+---
+apiVersion: ran.openshift.io/v1
+kind: PolicyGenTemplate
+metadata:
+  # The name will be used to generate the placementBinding and placementRule names as {name}-placementBinding and {name}-placementRule
+  name: "ran-vcl02-policies"
+  namespace: "site-ran-vcl02-policies"
+#  labels:
+#    common: false
+#    groupName: "N/A"
+#    siteName: "ran-vcl02"
+#    mcp: master
+spec:
+  bindingRules:
+    siteName: "ran-vcl02"
+  mcp: "master"
+  sourceFiles:
+    - fileName: SriovNetwork.yaml
+      policyName: "sriov-nw-fh"
+      metadata:
+        name: "sriov-nw-du-fh"
+      spec:
+        resourceName: du_fh
+        vlan: 140
+    - fileName: SriovNetworkNodePolicy.yaml
+      policyName: "sriov-nnp-fh"
+      metadata:
+        name: "sriov-nnp-du-fh"
+      spec:
+        deviceType: netdevice
+        isRdma: true
+        nicSelector:
+          pfNames: ["ens6f0"]
+        numVfs: 8
+        priority: 10
+        resourceName: du_fh
+    - fileName: SriovNetwork.yaml
+      policyName: "sriov-nw-mh"
+      metadata:
+        name: "sriov-nw-du-mh"
+      spec:
+        resourceName: du_mh
+        vlan: 150
+    - fileName: SriovNetworkNodePolicy.yaml
+      policyName: "sriov-nnp-mh"
+      metadata:
+        name: "sriov-nnp-du-mh"
+      spec:
+        deviceType: vfio-pci
+        isRdma: false
+        nicSelector:
+          pfNames: ["ens1f0"]
+        numVfs: 8
+        priority: 10
+        resourceName: du_mh
+    - fileName: PerformanceProfile.yaml
+      policyName: "perfprofile"
+      metadata:
+        name: openshift-node-performance-profile
+      spec:
+        cpu:
+          isolated: 2-39,42-79
+          reserved: 0-1,40-41
+        hugepages:
+          defaultHugepagesSize: 1G
+          pages:
+            - size: 1G
+              count: 32
+        realTimeKernel:
+          enabled: false
+    - fileName: TunedPerformancePatch.yaml
+      policyName: "tuned-perf-patch"
+      spec:
+        profile:
+          - name: performance-patch
+            data: |
+              [main]
+              summary=Configuration changes profile inherited from performance created tuned
+              include=openshift-node-performance-profile
+              [bootloader]
+              cmdline_crash=nohz_full=2-39,42-79
+              [sysctl]
+              kernel.timer_migration=1
+              [service]
+              service.stalld=start,enable

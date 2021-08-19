@@ -1,7 +1,8 @@
 apiVersion: batch/v1
 kind: Job
 metadata:
-  name: siteconfig-pre
+  name: policygentemplates-pre
+  namespace: sites-sub
   generateName: pre-sync-
   annotations:
     argocd.argoproj.io/hook: PreSync
@@ -11,8 +12,8 @@ spec:
     spec:
       containers:
         - name: ztp-site-generator
-          image: quay.io/redhat_emp1/ztp-site-generator:latest 
-          command: ["/bin/bash", "pre-sync-entrypoint.sh"]
+          image: quay.io/redhat_emp1/ztp-site-generator:latest
+          command: ["/bin/bash", "pre-sync-entrypoint.sh", "policygentemplates"]
       restartPolicy: Never
   backoffLimit: 0
   ttlSecondsAfterFinished: 60
